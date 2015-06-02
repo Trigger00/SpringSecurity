@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import spring.model.Customer;
 import spring.service.CustomerService;
@@ -34,6 +36,12 @@ public class CustomerManagedBean implements Serializable {
     private String surname;
  
     public String addCustomer() {
+    	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	      String name = auth.getName(); //get logged in username
+    	      
+    	
+    	System.out.println("nombre es" +" "+name);
+    	
         try {
             Customer customer = new Customer();
             customer.setId(getId());
