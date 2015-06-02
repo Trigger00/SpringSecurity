@@ -50,11 +50,13 @@ public class CustomerManagedBean implements Serializable {
 
     public String updateCustomer(Customer customer) {
         try {
+        	System.out.println("ENTRA A UPDATE Y RETONAR SUCCES");
             getCustomerService().updateCustomer(customer);
             return SUCCESS;       
         } catch (DataAccessException e) {
             e.printStackTrace();       
         }    
+        System.out.println("ENTRA A UPDATE Y RETONAR ERROR");
         return ERROR;
     } 
  

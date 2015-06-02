@@ -31,10 +31,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
-
+System.out.println("entro al metodo loadUserByUsername");
 		return new org.springframework.security.core.userdetails.User(
-				domainUser.getLogin(), domainUser.getPassword(), enabled,
-				accountNonExpired, credentialsNonExpired, accountNonLocked,
+				domainUser.getLogin(), 
+				domainUser.getPassword(), 
+				enabled,
+				accountNonExpired, 
+				credentialsNonExpired, 
+				accountNonLocked,
 				getAuthorities(domainUser.getRole().getId()));
 	}
 
@@ -48,7 +52,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<String> roles = new ArrayList<String>();
 
 		if (role.intValue() == 1) {
-			roles.add("ROLE_MODERATOR");
+			// roles.add("ROLE_MODERATOR");
 			roles.add("ROLE_ADMIN");
 		} else if (role.intValue() == 2) {
 			roles.add("ROLE_MODERATOR");

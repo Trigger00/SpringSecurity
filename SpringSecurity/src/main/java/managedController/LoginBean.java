@@ -20,15 +20,30 @@ public class LoginBean {
     @ManagedProperty(value="#{authenticationManager}")
     private AuthenticationManager authenticationManager = null;
 
+    
+    public String processPage1(){
+		return "success";
+	}
+ 
+	public String processPage2(){
+		return "success";
+	}
+    
     public String login() {
         try {
+        	
+        	System.out.println("entro al metodo login");
             Authentication request = new UsernamePasswordAuthenticationToken(this.getUserName(), this.getPassword());
+            System.out.println("salio del request");
             Authentication result = authenticationManager.authenticate(request);
+            System.out.println("salio del result");
             SecurityContextHolder.getContext().setAuthentication(result);
         } catch (AuthenticationException e) {
             e.printStackTrace();
+            System.out.println("ENTRA A LOGIN Y RETONAR incorrect");
             return "incorrect";
         }
+        System.out.println("ENTRA A LOGIN Y RETONAR correct");
         return "correct";
     }
 
